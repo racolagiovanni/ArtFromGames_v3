@@ -1,7 +1,9 @@
-//doesn't work; needs revisions
+//doesn't work; needs many many revisions
 /* jshint esversion: 8 */
 //let fish, ball;
 let urchin, floor;
+let player, fish;
+let score;
 
 //code insp. from Allison Parrish @ Creative Coding 
 let spr;
@@ -24,10 +26,25 @@ function setup() {
   	//fish = new Turtle(30);
 	//ball = new Sprite(80, 152, 50);
 	//randomSequence();
+  
+	fish = new Group();
+	fish.diameter = 50;
+	fish.x = () => random(0, canvas.w);
+	fish.y = () => random(0, canvas.h);
+	fish.amount = 10;
+
+	player = new Sprite();
+
+	player.overlaps(fish, collect);
 }
+function collect(player, fish) {
+	fish.remove();
+}
+
 function draw() {
   background(50);
 
+  
   spr.velocity.x = (mouseX - spr.position.x) * 0.2;
   spr.velocity.y = (mouseY - spr.position.y) * 0.2;
 
